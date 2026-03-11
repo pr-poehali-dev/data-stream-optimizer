@@ -15,11 +15,23 @@ export function ContactSection() {
     if (!formData.name || !formData.contact || !formData.message) return
 
     setIsSubmitting(true)
-    await new Promise((resolve) => setTimeout(resolve, 1200))
-    setIsSubmitting(false)
-    setSubmitSuccess(true)
-    setFormData({ name: "", contact: "", message: "" })
-    setTimeout(() => setSubmitSuccess(false), 5000)
+    try {
+      await fetch("https://functions.poehali.dev/60968f0e-8027-4aaf-8f6a-be38baee881f", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: formData.name,
+          contact: formData.contact,
+          contact_type: contactType,
+          message: formData.message,
+        }),
+      })
+      setSubmitSuccess(true)
+      setFormData({ name: "", contact: "", message: "" })
+      setTimeout(() => setSubmitSuccess(false), 5000)
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   return (
