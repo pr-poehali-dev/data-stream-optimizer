@@ -37,24 +37,23 @@ export function ContactSection() {
   return (
     <section
       ref={ref}
-      className="flex h-screen w-screen shrink-0 snap-start items-center px-4 pt-20 md:px-12 md:pt-0 lg:px-16"
+      className="flex shrink-0 snap-start items-start overflow-y-auto px-4 pt-16 pb-8 md:items-center md:px-12 md:pt-0 lg:px-16"
+      style={{ minHeight: "100dvh", width: "100vw" }}
     >
       <div className="mx-auto w-full max-w-7xl">
-        <div className="grid gap-8 md:grid-cols-[1.1fr_1fr] md:gap-12 lg:gap-20">
+        <div className="grid gap-6 md:grid-cols-[1.1fr_1fr] md:gap-12 lg:gap-20">
           {/* Left side */}
           <div className="flex flex-col justify-center">
             <div
-              className={`mb-6 transition-all duration-700 md:mb-10 ${
+              className={`mb-4 transition-all duration-700 md:mb-10 ${
                 isVisible ? "translate-x-0 opacity-100" : "-translate-x-12 opacity-0"
               }`}
             >
-              <div className="flex items-center gap-3 mb-2">
-                <h2 className="font-bold text-4xl leading-[1.1] tracking-tight text-foreground md:text-5xl lg:text-6xl">
-                  Напишите
-                  <br />
-                  нам
+              <div className="flex items-center gap-2 mb-1">
+                <h2 className="font-bold text-2xl leading-[1.1] tracking-tight text-foreground md:text-5xl lg:text-6xl">
+                  Напишите нам
                 </h2>
-                <span className="text-4xl self-start mt-1">🐾</span>
+                <span className="text-2xl md:text-4xl">🐾</span>
               </div>
               <p className="text-xs text-foreground/50 font-mono">/ Мы ответим быстрее, чем кот мурлыкнет</p>
             </div>

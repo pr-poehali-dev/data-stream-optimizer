@@ -7,7 +7,8 @@ export function AboutSection({ scrollToSection }: { scrollToSection?: (index: nu
   return (
     <section
       ref={ref}
-      className="flex h-screen w-screen shrink-0 snap-start items-center px-4 pt-20 md:px-12 md:pt-0 lg:px-16"
+      className="flex shrink-0 snap-start items-start overflow-y-auto px-4 pt-16 pb-8 md:items-center md:px-12 md:pt-0 lg:px-16"
+      style={{ minHeight: "100dvh", width: "100vw" }}
     >
       <div className="mx-auto w-full max-w-7xl">
         <div className="grid gap-8 md:grid-cols-2 md:gap-16 lg:gap-24">
@@ -18,11 +19,11 @@ export function AboutSection({ scrollToSection }: { scrollToSection?: (index: nu
                 isVisible ? "translate-y-0 opacity-100" : "-translate-y-12 opacity-0"
               }`}
             >
-              <div className="flex items-center gap-3 mb-3">
-                <h2 className="font-bold text-4xl leading-[1.1] tracking-tight text-foreground md:text-5xl lg:text-6xl">
+              <div className="flex items-center gap-2 mb-2">
+                <h2 className="font-bold text-2xl leading-[1.1] tracking-tight text-foreground md:text-5xl lg:text-6xl">
                   О нас
                 </h2>
-                <span className="text-4xl">😺</span>
+                <span className="text-2xl md:text-4xl">😺</span>
               </div>
               <p className="font-mono text-sm text-foreground/50">/ История КотоДом</p>
             </div>

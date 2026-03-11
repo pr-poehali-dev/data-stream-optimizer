@@ -94,7 +94,12 @@
 @layer base {
   * {
     @apply border-border;
-    cursor: none;
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    * {
+      cursor: none;
+    }
   }
 
   body {

@@ -51,9 +51,9 @@ export function CartDrawer({ open, onClose }: CartDrawerProps) {
         className="fixed inset-0 z-40 bg-black/30 backdrop-blur-sm"
         onClick={handleClose}
       />
-      <div className="fixed right-0 top-0 bottom-0 z-50 w-full max-w-md bg-white/95 backdrop-blur-xl shadow-2xl border-l border-orange-100 flex flex-col transition-transform duration-300">
+      <div className="fixed right-0 top-0 bottom-0 z-50 w-full max-w-md bg-white/98 backdrop-blur-xl shadow-2xl border-l border-orange-100 flex flex-col" style={{ maxHeight: "100dvh" }}>
         {/* Header */}
-        <div className="flex items-center justify-between p-6 border-b border-orange-100">
+        <div className="flex items-center justify-between p-4 md:p-6 border-b border-orange-100 flex-shrink-0">
           <div className="flex items-center gap-2">
             {step !== "cart" && step !== "success" && (
               <button
@@ -82,10 +82,10 @@ export function CartDrawer({ open, onClose }: CartDrawerProps) {
         {/* Cart step */}
         {step === "cart" && (
           <>
-            <div className="flex-1 overflow-y-auto p-6 space-y-4">
+            <div className="flex-1 overflow-y-auto p-4 space-y-3">
               {items.length === 0 ? (
                 <div className="flex flex-col items-center justify-center h-48 text-center">
-                  <span className="text-6xl mb-4">🐾</span>
+                  <span className="text-5xl mb-3">🐾</span>
                   <p className="text-foreground/50 font-medium">Корзина пуста</p>
                   <p className="text-sm text-foreground/40 mt-1">Добавьте уютный домик для вашего кота!</p>
                 </div>
@@ -95,22 +95,22 @@ export function CartDrawer({ open, onClose }: CartDrawerProps) {
                     <img
                       src={item.image}
                       alt={item.name}
-                      className="w-16 h-16 object-cover rounded-lg flex-shrink-0"
+                      className="w-14 h-14 md:w-16 md:h-16 object-cover rounded-lg flex-shrink-0"
                     />
                     <div className="flex-1 min-w-0">
-                      <p className="font-semibold text-foreground text-sm leading-tight mb-2 truncate">{item.name}</p>
+                      <p className="font-semibold text-foreground text-sm leading-tight mb-2">{item.name}</p>
                       <div className="flex items-center justify-between">
-                        <div className="flex items-center gap-2">
+                        <div className="flex items-center gap-1.5">
                           <button
                             onClick={() => updateQuantity(item.id, item.quantity - 1)}
-                            className="w-6 h-6 rounded-md bg-white border border-orange-200 flex items-center justify-center text-foreground/70 hover:border-primary transition-colors text-sm font-bold"
+                            className="w-8 h-8 rounded-lg bg-white border border-orange-200 flex items-center justify-center text-foreground/70 active:bg-orange-50 transition-colors font-bold text-base"
                           >
                             −
                           </button>
-                          <span className="text-sm font-medium w-4 text-center">{item.quantity}</span>
+                          <span className="text-sm font-medium w-6 text-center">{item.quantity}</span>
                           <button
                             onClick={() => updateQuantity(item.id, item.quantity + 1)}
-                            className="w-6 h-6 rounded-md bg-white border border-orange-200 flex items-center justify-center text-foreground/70 hover:border-primary transition-colors text-sm font-bold"
+                            className="w-8 h-8 rounded-lg bg-white border border-orange-200 flex items-center justify-center text-foreground/70 active:bg-orange-50 transition-colors font-bold text-base"
                           >
                             +
                           </button>
@@ -121,9 +121,9 @@ export function CartDrawer({ open, onClose }: CartDrawerProps) {
                           </span>
                           <button
                             onClick={() => removeItem(item.id)}
-                            className="p-1 rounded-lg hover:bg-red-50 text-foreground/40 hover:text-red-400 transition-colors"
+                            className="w-8 h-8 rounded-lg flex items-center justify-center text-foreground/40 active:bg-red-50 active:text-red-400 transition-colors"
                           >
-                            <Icon name="Trash2" size={14} />
+                            <Icon name="Trash2" size={15} />
                           </button>
                         </div>
                       </div>
@@ -134,7 +134,7 @@ export function CartDrawer({ open, onClose }: CartDrawerProps) {
             </div>
 
             {items.length > 0 && (
-              <div className="p-6 border-t border-orange-100 space-y-3">
+              <div className="p-4 md:p-6 border-t border-orange-100 space-y-3 flex-shrink-0">
                 <div className="flex justify-between items-center">
                   <span className="text-foreground/60 text-sm">Итого:</span>
                   <span className="font-bold text-xl text-primary">{totalPrice.toLocaleString("ru-RU")} ₽</span>
@@ -154,7 +154,7 @@ export function CartDrawer({ open, onClose }: CartDrawerProps) {
         {/* Delivery form step */}
         {step === "form" && (
           <>
-            <div className="flex-1 overflow-y-auto p-6 space-y-5">
+            <div className="flex-1 overflow-y-auto p-4 space-y-4">
               <div>
                 <label className="block text-xs font-semibold text-foreground/60 mb-1.5 uppercase tracking-wide">
                   Ваше имя
@@ -209,7 +209,7 @@ export function CartDrawer({ open, onClose }: CartDrawerProps) {
               </div>
             </div>
 
-            <div className="p-6 border-t border-orange-100">
+            <div className="p-4 border-t border-orange-100 flex-shrink-0">
               <button
                 onClick={() => {
                   if (formData.name && formData.phone && formData.address) {
@@ -217,7 +217,7 @@ export function CartDrawer({ open, onClose }: CartDrawerProps) {
                   }
                 }}
                 disabled={!formData.name || !formData.phone || !formData.address}
-                className="w-full py-3.5 rounded-xl bg-primary text-white font-bold text-base hover:bg-primary/90 transition-colors shadow-md disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-full py-4 rounded-xl bg-primary text-white font-bold text-base active:bg-primary/90 transition-colors shadow-md disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 Перейти к оплате →
               </button>
@@ -228,7 +228,7 @@ export function CartDrawer({ open, onClose }: CartDrawerProps) {
         {/* SBP payment step */}
         {step === "sbp" && (
           <>
-            <div className="flex-1 overflow-y-auto p-6 space-y-5">
+            <div className="flex-1 overflow-y-auto p-4 space-y-4">
               <div className="text-center p-5 rounded-2xl bg-gradient-to-br from-orange-50 to-amber-50 border border-orange-200">
                 <div className="text-5xl mb-3">🏦</div>
                 <h3 className="font-bold text-foreground text-lg mb-1">Оплата через СБП</h3>
@@ -245,10 +245,10 @@ export function CartDrawer({ open, onClose }: CartDrawerProps) {
                     <button
                       key={bank.id}
                       onClick={() => setSbpBank(bank.id)}
-                      className={`flex items-center gap-2.5 p-3 rounded-xl border-2 text-sm font-medium transition-all ${
+                      className={`flex items-center gap-2 p-3 min-h-[48px] rounded-xl border-2 text-sm font-medium transition-all active:scale-95 ${
                         sbpBank === bank.id
                           ? "border-primary bg-primary/5 text-foreground"
-                          : "border-orange-100 bg-white hover:border-orange-300 text-foreground/70"
+                          : "border-orange-100 bg-white active:border-orange-300 text-foreground/70"
                       }`}
                     >
                       <span className="text-xl">{bank.emoji}</span>
@@ -265,11 +265,11 @@ export function CartDrawer({ open, onClose }: CartDrawerProps) {
               </div>
             </div>
 
-            <div className="p-6 border-t border-orange-100">
+            <div className="p-4 border-t border-orange-100 flex-shrink-0">
               <button
                 onClick={handleSuccess}
                 disabled={!sbpBank}
-                className="w-full py-3.5 rounded-xl bg-primary text-white font-bold text-base hover:bg-primary/90 transition-colors shadow-md disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-full py-4 rounded-xl bg-primary text-white font-bold text-base active:bg-primary/90 transition-colors shadow-md disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 Оплатить через СБП →
               </button>

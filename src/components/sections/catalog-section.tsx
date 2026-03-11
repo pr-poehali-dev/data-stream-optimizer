@@ -106,21 +106,21 @@ function ProductCard({
         <span className="absolute top-3 right-3 text-2xl">{product.emoji}</span>
       </div>
 
-      <div className="flex flex-col flex-1 p-4">
-        <h3 className="font-bold text-foreground text-base mb-1 leading-tight">{product.name}</h3>
-        <p className="text-xs text-foreground/60 leading-relaxed mb-3 flex-1">{product.description}</p>
+      <div className="flex flex-col flex-1 p-3 md:p-4">
+        <h3 className="font-bold text-foreground text-sm md:text-base mb-1 leading-tight">{product.name}</h3>
+        <p className="text-xs text-foreground/60 leading-relaxed mb-3 flex-1 hidden sm:block">{product.description}</p>
 
         <div className="flex items-center justify-between mt-auto pt-2 border-t border-orange-100">
-          <span className="font-bold text-primary text-lg">{product.price.toLocaleString("ru-RU")} ₽</span>
+          <span className="font-bold text-primary text-sm md:text-base">{product.price.toLocaleString("ru-RU")} ₽</span>
           <button
             onClick={handleAdd}
-            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold transition-all duration-300 ${
+            className={`flex items-center justify-center min-h-[36px] px-2.5 py-1.5 rounded-xl text-xs font-bold transition-all duration-300 ${
               added
                 ? "bg-green-100 text-green-700"
-                : "bg-primary text-white hover:bg-primary/90 hover:scale-105"
+                : "bg-primary text-white hover:bg-primary/90 active:scale-95"
             }`}
           >
-            {added ? "✓ Добавлено!" : "В корзину"}
+            {added ? "✓" : "В корзину"}
           </button>
         </div>
       </div>
@@ -134,24 +134,25 @@ export function CatalogSection({ onCartOpen }: { onCartOpen: () => void }) {
   return (
     <section
       ref={ref}
-      className="flex h-screen w-screen shrink-0 snap-start items-center px-4 pt-20 md:px-12 md:pt-0 lg:px-16 overflow-y-auto"
+      className="flex shrink-0 snap-start items-start overflow-y-auto px-4 pt-16 pb-6 md:px-12 md:items-center md:pt-0 lg:px-16"
+      style={{ minHeight: "100dvh", width: "100vw" }}
     >
-      <div className="mx-auto w-full max-w-7xl py-4">
+      <div className="mx-auto w-full max-w-7xl py-2 md:py-4">
         <div
-          className={`mb-8 transition-all duration-700 ${
+          className={`mb-4 md:mb-8 transition-all duration-700 ${
             isVisible ? "translate-x-0 opacity-100" : "-translate-x-12 opacity-0"
           }`}
         >
-          <div className="flex items-center gap-3 mb-2">
-            <h2 className="font-bold text-4xl tracking-tight text-foreground md:text-5xl">
+          <div className="flex items-center gap-2 mb-1">
+            <h2 className="font-bold text-2xl tracking-tight text-foreground md:text-5xl">
               Каталог
             </h2>
-            <span className="text-4xl">🐾</span>
+            <span className="text-2xl md:text-4xl">🐾</span>
           </div>
-          <p className="text-foreground/60 text-sm md:text-base">/ Домики и уютные местечки для вашего питомца</p>
+          <p className="text-foreground/60 text-xs md:text-base">/ Домики и уютные местечки для вашего питомца</p>
         </div>
 
-        <div className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-3 md:gap-5">
+        <div className="grid grid-cols-2 gap-3 md:grid-cols-3 md:gap-5">
           {products.map((product, i) => (
             <ProductCard
               key={product.id}
