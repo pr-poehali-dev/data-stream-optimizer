@@ -50,18 +50,23 @@ export function CustomCursor() {
     <>
       <div
         ref={outerRef}
-        className="pointer-events-none fixed left-0 top-0 z-50 mix-blend-difference will-change-transform"
+        className="pointer-events-none fixed left-0 top-0 z-[9999] will-change-transform select-none"
         style={{ contain: "layout style paint" }}
       >
-        <div className="h-4 w-4 rounded-full border-2 border-white" />
+        <span
+          style={{
+            fontSize: isPointerRef.current ? "2rem" : "1.6rem",
+            display: "block",
+            lineHeight: 1,
+            filter: "drop-shadow(0 1px 3px rgba(0,0,0,0.15))",
+            transition: "font-size 0.15s ease",
+            userSelect: "none",
+          }}
+        >
+          🐾
+        </span>
       </div>
-      <div
-        ref={innerRef}
-        className="pointer-events-none fixed left-0 top-0 z-50 mix-blend-difference will-change-transform"
-        style={{ contain: "layout style paint" }}
-      >
-        <div className="h-2 w-2 rounded-full bg-white" />
-      </div>
+      <div ref={innerRef} style={{ display: "none" }} />
     </>
   )
 }
